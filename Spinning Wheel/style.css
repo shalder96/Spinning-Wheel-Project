@@ -1,0 +1,198 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #333;
+}
+
+.wheel-container {
+  position: relative;
+  text-align: center;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#spin-button {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #b8860b, #ffd700, #daa520, #ffd700, #b8860b);
+  /* background-color: #FFD700; */
+  /* background-color: #023c7a; */
+  border-radius: 50%;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+  color: linear-gradient(135deg, #c0c0c0, #e0e0e0, #b0b0b0, #d0d0d0, #a0a0a0);;
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.12);
+  letter-spacing: 0.1em;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s;
+  /* overflow: hidden; */
+}
+/*
+#shine {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: rotate(25deg);
+  animation: shine 3s infinite;
+  pointer-events: none;
+  }
+  @keyframes shine {
+    0% {
+        transform: translate(-100%, -100%) rotate(25deg);
+    }
+    100% {
+        transform: translate(100%, 100%) rotate(25deg);
+    }
+}*/
+#spin-button::before {
+  content: ' ';
+  position: absolute;
+  top: -28px;
+  width: 20px;
+  height: 30px;
+  z-index: -20;
+  background: linear-gradient(135deg, #b8860b, #ffd700, #daa520, #ffd700, #b8860b);
+  clip-path: polygon(50% 0%, 20% 100%, 80% 100%);
+}
+
+#wheel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background: #333;
+  overflow: hidden;
+  border: 8px solid #ffd700;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  transition: transform 4s ease-in-out; /* Smooth spinning */
+}
+
+.segment {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  background: var(--clr);
+  transform-origin: bottom right;
+  transform: rotate(calc(45deg * var(--i)));
+  clip-path: polygon(0 0, 55% 0, 100% 100%, 0 55%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  
+}
+.segment span {
+  position: relative;
+  transform: rotate(45deg);
+  font-size: 2em;
+  font-weight: 700;
+  color: antiquewhite;
+  text-shadow: 3px 2px 5px rgba(0, 0, 0, 0.17);
+}
+.segment span::before {
+  content:  '₹';
+  position: relative;
+  font-size: 0.75;
+  font-weight: 500;
+}
+/* Responsive media queries */
+@media screen and (max-width: 768px) {
+  .wheel-container {
+    width: 300px;
+    height: 300px;
+  }
+  #wheel {
+    border-width: 6px;
+  }
+  .segment span {
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+  #spin-button {
+    width: 50px;
+    height: 50px;
+    font-size: 14px;
+  }
+  #spin-button::before {
+    top: -25px;
+    width: 18px;
+    height: 28px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .wheel-container {
+    width: 200px;
+    height: 200px;
+  }
+  #wheel {
+    border-width: 5px;
+  }
+  .segment span {
+    font-size: 1.05em;
+    font-weight: 500;
+  }
+  #spin-button {
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+  }
+  #spin-button::before {
+    top: -20px;
+    width: 15px;
+    height: 24px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .wheel-container {
+    width: 150px;
+    height: 150px;
+  }
+  .segment span {
+    font-size: 0.75em;
+    font-weight: 300;
+  }
+  #wheel {
+    border-width: 4px;
+  }
+  #spin-button {
+    width: 30px;
+    height: 30px;
+    font-size: 8px;
+  }
+  #spin-button::before {
+    top: -18px;
+    width: 12px;
+    height: 20px;
+  }
+}
